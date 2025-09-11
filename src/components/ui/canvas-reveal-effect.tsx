@@ -1,27 +1,53 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef } from "react";
-import * as THREE from "three";
 
-export const CanvasRevealEffect = ({
-  animationSpeed = 0.4,
-  opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
-  colors = [[0, 255, 255]],
-  containerClassName,
-  dotSize,
-  showGradient = true,
-}: {
-  /**
-   * 0.1 - slower
-   * 1.0 - faster
-   */
+import React, { useMemo, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
+import { cn } from "@/lib/utils";
+
+/* -------------------- Types -------------------- */
+
+type UniformType =
+  | "uniform1f"
+  | "uniform3f"
+  | "uniform1fv"
+  | "uniform3fv"
+  | "uniform2f";
+
+interface UniformSpec {
+  value: number | number[] | number[][];
+  type: UniformType;
+}
+
+type UniformsRecord = Record<string, UniformSpec>;
+
+type PreparedUniformValue =
+  | number
+  | number[]
+  | THREE.Vector3
+  | THREE.Vector3[]
+  | THREE.Vector2;
+
+type PreparedUniforms = Record<string, { value: PreparedUniformValue }>;
+
+interface CanvasRevealEffectProps {
   animationSpeed?: number;
   opacities?: number[];
   colors?: number[][];
   containerClassName?: string;
   dotSize?: number;
   showGradient?: boolean;
+}
+
+/* -------------------- CanvasRevealEffect -------------------- */
+
+export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
+  animationSpeed = 0.4,
+  opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
+  colors = [[0, 255, 255]],
+  containerClassName,
+  dotSize,
+  showGradient = true,
 }) => {
   return (
     <div className={cn("h-full relative bg-white w-full", containerClassName)}>
@@ -41,12 +67,13 @@ export const CanvasRevealEffect = ({
           center={["x", "y"]}
         />
       </div>
-      {showGradient && (
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-[84%]" />
-      )}
+
+      {showGradient && <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-[84%]" />}
     </div>
   );
 };
+
+/* -------------------- DotMatrix -------------------- */
 
 interface DotMatrixProps {
   colors?: number[][];
@@ -65,7 +92,7 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
   shader = "",
   center = ["x", "y"],
 }) => {
-  const uniforms = React.useMemo(() => {
+  const uniforms = useMemo<UniformsRecord>(() => {
     let colorsArray = [
       colors[0],
       colors[0],
@@ -168,98 +195,101 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
 
       fragColor = vec4(color, opacity);
       fragColor.rgb *= fragColor.a;
-        }`}
+        }` }
       uniforms={uniforms}
       maxFps={60}
     />
   );
 };
 
-type Uniforms = {
-  [key: string]: {
-    value: number[] | number[][] | number;
-    type: string;
-  };
-};
-const ShaderMaterial = ({
-  source,
-  uniforms,
-  maxFps = 60,
-}: {
+/* -------------------- ShaderMaterial (no explicit any) -------------------- */
+
+const ShaderMaterial: React.FC<{
   source: string;
-  hovered?: boolean;
+  uniforms: UniformsRecord;
   maxFps?: number;
-  uniforms: Uniforms;
-}) => {
+}> = ({ source, uniforms, maxFps = 60 }) => {
   const { size } = useThree();
-  const ref = useRef<THREE.Mesh>();
-  let lastFrameTime = 0;
+  const meshRef = useRef<
+    THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial> | null
+  >(null);
+  const lastFrameTime = useRef<number>(0);
 
   useFrame(({ clock }) => {
-    if (!ref.current) return;
     const timestamp = clock.getElapsedTime();
-    if (timestamp - lastFrameTime < 1 / maxFps) {
+    if (timestamp - lastFrameTime.current < 1 / maxFps) {
       return;
     }
-    lastFrameTime = timestamp;
+    lastFrameTime.current = timestamp;
 
-    const material: any = ref.current.material;
-    const timeLocation = material.uniforms.u_time;
-    timeLocation.value = timestamp;
+    const mat = meshRef.current?.material;
+    if (!mat || !(mat instanceof THREE.ShaderMaterial)) return;
+
+    const timeUniform = (mat.uniforms && (mat.uniforms.u_time as { value: unknown })) || undefined;
+    if (timeUniform) {
+      // assign numeric value safely
+      (timeUniform as { value: number }).value = timestamp;
+    }
   });
 
-  const getUniforms = () => {
-    const preparedUniforms: any = {};
+  const getUniforms = (): PreparedUniforms => {
+    const preparedUniforms: PreparedUniforms = {};
 
     for (const uniformName in uniforms) {
-      const uniform: any = uniforms[uniformName];
+      const uniform = uniforms[uniformName];
 
       switch (uniform.type) {
         case "uniform1f":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1f" };
+          preparedUniforms[uniformName] = {
+            value: uniform.value as number,
+          };
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector3().fromArray(uniform.value),
-            type: "3f",
+            value: new THREE.Vector3(...(uniform.value as number[])),
           };
           break;
         case "uniform1fv":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1fv" };
+          preparedUniforms[uniformName] = {
+            value: uniform.value as number[],
+          };
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
-            value: uniform.value.map((v: number[]) =>
-              new THREE.Vector3().fromArray(v)
+            value: (uniform.value as number[][]).map(
+              (v) => new THREE.Vector3(...v)
             ),
-            type: "3fv",
           };
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector2().fromArray(uniform.value),
-            type: "2f",
+            value: new THREE.Vector2(...(uniform.value as number[])),
           };
           break;
-        default:
+        default: {
+          // Should not happen — kept for safety
+          // eslint-disable-next-line no-console
           console.error(`Invalid uniform type for '${uniformName}'.`);
           break;
+        }
       }
     }
 
-    preparedUniforms["u_time"] = { value: 0, type: "1f" };
+    preparedUniforms["u_time"] = { value: 0 };
     preparedUniforms["u_resolution"] = {
       value: new THREE.Vector2(size.width * 2, size.height * 2),
-    }; // Initialize u_resolution
+    };
+
     return preparedUniforms;
   };
 
-  // Shader material
   const material = useMemo(() => {
-    const materialObject = new THREE.ShaderMaterial({
+    // three's ShaderMaterial expects uniforms typed as an object with `value` keys.
+    // We use `unknown` casting here instead of `any` to avoid eslint no-explicit-any.
+    const shaderParameters: THREE.ShaderMaterialParameters = {
       vertexShader: `
       precision mediump float;
-      in vec2 coordinates;
+      in vec3 position;
       uniform vec2 u_resolution;
       out vec2 fragCoord;
       void main(){
@@ -271,23 +301,33 @@ const ShaderMaterial = ({
       }
       `,
       fragmentShader: source,
-      uniforms: getUniforms(),
+      uniforms: getUniforms() as unknown as { [k: string]: { value: unknown } },
       glslVersion: THREE.GLSL3,
-      blending: THREE.CustomBlending,
-      blendSrc: THREE.SrcAlphaFactor,
-      blendDst: THREE.OneFactor,
-    });
+    };
 
-    return materialObject;
+    const mat = new THREE.ShaderMaterial(shaderParameters);
+    mat.blending = THREE.CustomBlending;
+    mat.blendSrc = THREE.SrcAlphaFactor;
+    mat.blendDst = THREE.OneFactor;
+    return mat;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.width, size.height, source]);
 
   return (
-    <mesh ref={ref as any}>
+    <mesh ref={meshRef}>
       <planeGeometry args={[2, 2]} />
       <primitive object={material} attach="material" />
     </mesh>
   );
 };
+
+/* -------------------- Shader wrapper -------------------- */
+
+interface ShaderProps {
+  source: string;
+  uniforms: UniformsRecord;
+  maxFps?: number;
+}
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
   return (
@@ -296,13 +336,5 @@ const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
     </Canvas>
   );
 };
-interface ShaderProps {
-  source: string;
-  uniforms: {
-    [key: string]: {
-      value: number[] | number[][] | number;
-      type: string;
-    };
-  };
-  maxFps?: number;
-}
+
+export default CanvasRevealEffect;
