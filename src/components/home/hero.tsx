@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Download } from "lucide-react";
+import { ArrowRight, Check, Download, Github, Instagram, Linkedin, Twitter, X } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Spotlight } from "../effects/spotlight";
@@ -25,13 +25,21 @@ export function Hero() {
                 <div className="grid items-center gap-12 lg:grid-cols-2">
                     {/* Left Column - Text Content */}
                     <div className="mx-auto max-w-2xl text-left lg:mx-0">
-                        <div>
+                        <div className="flex items-center md:justify-between flex-col md:flex-row">
+                            <div>
                             <Badge
                                 className="mb-4 rounded-full px-4 py-1.5 text-sm font-medium shadow-sm transition-none"
                                 variant="secondary"
                             >
                                 <span className="text-primary mr-1">✦</span> Who is Mouad ?
                             </Badge>
+                        </div>
+                        <div className="flex justify-between gap-4">
+                            <Link href="/"><Linkedin className="w-10 border rounded-full p-1"/></Link>
+                            <Link href="/"><Twitter className="w-10 border rounded-full p-1"/></Link>
+                            <Link href="/"><Github className="w-10 border rounded-full p-1"/></Link>
+                            <Link href="/"><Instagram className="w-10 border rounded-full p-1"/></Link>
+                        </div>
                         </div>
 
                         <h1 className="from-foreground via-foreground/90 to-foreground/70 mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl lg:text-6xl">
@@ -100,13 +108,13 @@ export function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                         whileHover={{ scale: 1.05, rotate: 2 }}
-                        className="flex justify-center"
+                        className="md:flex justify-center hidden"
                     >
                         <motion.div
                             animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                         >
-                            <Image src="/hero.svg" alt="coco" height={1000} width={500} />
+                            <Image className="md:block hidden" src="/hero.svg" alt="coco" height={1000} width={500} />
                         </motion.div>
                     </motion.div>
                 </div>

@@ -78,7 +78,7 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
               transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
               href={item.href}
               onClick={item.href.startsWith("#") ? handleScrollToSection : undefined}
-              className="text-muted-foreground hover:text-foreground group relative text-xs font-medium transition-colors lg:text-sm"
+              className=" hover:text-foreground group relative text-xs font-medium transition-colors lg:text-sm"
             >
               {item.label}
               <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>

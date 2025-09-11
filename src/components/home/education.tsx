@@ -4,6 +4,7 @@ import React from 'react';
 import { Timeline } from '../ui/timeline';
 import { CardSpotlight } from '../ui/card-spotlight';
 import { Badge } from '../ui/badge';
+import { motion } from 'framer-motion';
 
 const Step = ({ title }: { title: string }) => {
     return (
@@ -110,22 +111,27 @@ const data = [
 const Education = () => {
     return (
         <div id='education' className="mt-20 container">
-            <div className="text-center mb-16 animate-fade-in">
-                <div className="">
-                        <Badge
-                            className="rounded-full px-4 py-1.5 text-sm font-medium shadow-sm transition-none"
-                            variant="secondary"
-                        >
-                            <span className="text-primary mr-1">✦</span>My Learning
-                        </Badge>
-                    </div>
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r dark:text-accent-foreground mt-5 bg-clip-text text-muted-foreground mb-6">
-                    My Education
-                </h2>
-                <p className="text-xl text-foreground max-w-2xl mx-auto leading-relaxed">
-                    A collection of academic and self-taught achievements built through curiosity and continuous learning.
-                </p>
-            </div>
+            
+
+            <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 flex flex-col items-center justify-center space-y-4 text-center"
+        >
+          <Badge
+            className="rounded-full px-4 py-1.5 text-sm font-medium shadow-sm"
+            variant="secondary"
+          >
+            <span className="text-primary mr-1">✦</span>Learning
+          </Badge>
+          <h2 className="from-foreground to-foreground/80 max-w-[600px] bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+            Education
+          </h2>
+          <p className="text-muted-foreground max-w-[500px] md:text-lg">
+A collection of academic and self-taught achievements built through curiosity and continuous learning.          </p>
+        </motion.div>
 
             <div className="relative w-full overflow-clip">
                 <Timeline data={data} />

@@ -4,6 +4,7 @@ import About from "@/components/home/about";
 import Education from "@/components/home/education";
 import { Hero } from "@/components/home/hero";
 import { Header } from "@/components/home/navbar";
+import { Skills } from "@/components/home/skills";
 
 import { useState } from "react";
 
@@ -20,6 +21,7 @@ export default function Home() {
           <Hero />
           <About/>
           <Education />
+          <Skills />
         </main>
     </div>
   );
