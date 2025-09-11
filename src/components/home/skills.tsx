@@ -3,16 +3,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useMotionValue, useReducedMotion } from "motion/react";
-import {
-  Code,
-  Server,
-  Database,
-  Layout,
-} from "lucide-react"; // pick any icons you like
 import { useEffect, useRef, useState } from "react";
 
-// ✅ Skills Data
-// Main stack
+export interface Stat {
+    number: string,
+    label: string,
+}
+
+//  Skills Data
 const skillsMain = [
     { icon: "devicon-html5-plain colored", name: "HTML5" },
 { icon: "devicon-css3-plain colored", name: "CSS3" },
@@ -26,7 +24,6 @@ const skillsMain = [
 { icon: "devicon-express-original colored", name: "Express.js" },
 ]
 
-// Other skills
 const skillsOther = [
   { icon: "devicon-git-plain colored", name: "Git" },
   { icon: "devicon-github-original colored", name: "GitHub" },
@@ -40,8 +37,14 @@ const skillsOther = [
   { icon: "devicon-sqldeveloper-plain colored", name: "SQL" }, // fallback
 ]
 
+const stats: Stat[] = [
+    { number: '30+', label: 'Projects Completed' },
+    { number: '10+', label: 'Technologies Mastered' },
+    { number: '2+', label: 'Years of Experience' }
+]
 
-// 🎞️ Marquee Row
+
+// Marquee Row
 const MarqueeRow = ({
   items,
   reverse = false,
@@ -181,6 +184,25 @@ export function Skills() {
           <MarqueeRow items={skillsMain} reverse={false} />
           <MarqueeRow items={skillsOther} reverse={true} />
         </div>
+
+        {/*Stats */}
+                    <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-8"
+            >
+                {stats.map(s => (
+                    <motion.div
+                        key={s.label}
+                        whileHover={{ scale: 1.07 }}
+                        className="text-center p-8 bg-muted backdrop-blur-sm rounded-xl border "
+                    >
+                        <div className="text-4xl font-bold text-primary mb-2">{s.number}</div>
+                        <div className="text-foreground">{s.label}</div>
+                    </motion.div>
+                ))}
+            </motion.div>
       </div>
     </section>
   );

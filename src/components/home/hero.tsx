@@ -35,10 +35,10 @@ export function Hero() {
                             </Badge>
                         </div>
                         <div className="flex justify-between gap-4">
-                            <Link href="/"><Linkedin className="w-10 border rounded-full p-1"/></Link>
-                            <Link href="/"><Twitter className="w-10 border rounded-full p-1"/></Link>
-                            <Link href="/"><Github className="w-10 border rounded-full p-1"/></Link>
-                            <Link href="/"><Instagram className="w-10 border rounded-full p-1"/></Link>
+                            <Link href="/"><Linkedin className="w-10 h-7 border rounded-full p-1"/></Link>
+                            <Link href="/"><Twitter className="w-10 h-7 border rounded-full p-1"/></Link>
+                            <Link href="/"><Github className="w-10 h-7 border rounded-full p-1"/></Link>
+                            <Link href="/"><Instagram className="w-10 h-7 border rounded-full p-1"/></Link>
                         </div>
                         </div>
 
@@ -67,7 +67,7 @@ export function Hero() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="border-primary/20 hover:border-primary/50 h-12 cursor-pointer rounded-full px-8 text-base transition-transform duration-300 hover:translate-y-[-2px]"
+                                    className="border-primary/20 w-full hover:border-primary/50 h-12 cursor-pointer rounded-full px-8 text-base transition-transform duration-300 hover:translate-y-[-2px]"
                                 >
                                     Download My CV
                                     <Download className="ml-2 size-4" />
@@ -76,7 +76,7 @@ export function Hero() {
                             <a href="#contact">
                                 <Button
                                     size="lg"
-                                    className="h-12 cursor-pointer rounded-full px-8 text-base shadow-md transition-transform duration-300 hover:translate-y-[-2px] hover:shadow-lg"
+                                    className="h-12 w-full cursor-pointer rounded-full px-8 text-base shadow-md transition-transform duration-300 hover:translate-y-[-2px] hover:shadow-lg"
                                 >
                                     View More
                                     <ArrowRight className="ml-2 size-4" />
@@ -116,7 +116,9 @@ export function Hero() {
                         >
                             <Image className="md:block hidden" src="/hero.svg" alt="coco" height={1000} width={500} />
                         </motion.div>
-                    </motion.div>
+                    </motion.div>.
+
+                    
                 </div>
             </div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_90%_30%,var(--muted),transparent_35%)] blur-3xl"></div>
