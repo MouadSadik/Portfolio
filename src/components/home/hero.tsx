@@ -5,10 +5,22 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Spotlight } from "../effects/spotlight";
 import Image from "next/image";
+import CircularText from "../CircularText";
+import { Squares } from "../ui/shadcn-io/squares-background";
+
 
 export function Hero() {
     return (
-        <section className="relative isolate container mx-auto w-full py-20 ">
+        <section className="relative isolate container mx-auto w-full py-10 ">
+            {/* Animated squares background */}
+      <Squares
+        direction="diagonal"
+        speed={0.5}
+        squareSize={40}
+        borderColor="rgba(0, 0, 0, 0.1)"
+        hoverFillColor="rgba(59, 130, 246, 0.1)"
+        className="absolute inset-0 dark:hidden"
+      />
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -27,19 +39,27 @@ export function Hero() {
                     <div className="mx-auto max-w-2xl text-left lg:mx-0">
                         <div className="flex items-center md:justify-between flex-col md:flex-row">
                             <div>
-                            <Badge
-                                className="mb-4 rounded-full px-4 py-1.5 text-sm font-medium shadow-sm transition-none"
-                                variant="secondary"
-                            >
-                                <span className="text-primary mr-1">✦</span> Who is Mouad ?
-                            </Badge>
-                        </div>
-                        <div className="flex justify-between gap-4">
-                            <Link href="/"><Linkedin className="w-10 h-7 border rounded-full p-1"/></Link>
-                            <Link href="/"><Twitter className="w-10 h-7 border rounded-full p-1"/></Link>
-                            <Link href="/"><Github className="w-10 h-7 border rounded-full p-1"/></Link>
-                            <Link href="/"><Instagram className="w-10 h-7 border rounded-full p-1"/></Link>
-                        </div>
+                                <Badge
+                                    className="mb-4 rounded-full px-4 py-1.5 text-sm font-medium shadow-sm transition-none"
+                                    variant="secondary"
+                                >
+                                    <span className="text-primary mr-1">✦</span> Who is Mouad ?
+                                </Badge>
+                            </div>
+                            <div className="flex justify-between gap-4">
+                                <Link href="/">
+                                    <Linkedin className="w-10 h-7 border rounded-full p-1" />
+                                </Link>
+                                <Link href="/">
+                                    <Twitter className="w-10 h-7 border rounded-full p-1" />
+                                </Link>
+                                <Link href="/">
+                                    <Github className="w-10 h-7 border rounded-full p-1" />
+                                </Link>
+                                <Link href="/">
+                                    <Instagram className="w-10 h-7 border rounded-full p-1" />
+                                </Link>
+                            </div>
                         </div>
 
                         <h1 className="from-foreground via-foreground/90 to-foreground/70 mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl lg:text-6xl">
@@ -103,7 +123,14 @@ export function Hero() {
 
 
                     {/* Right Column - Image svg */}
-                    <motion.div
+                    <div className="flex flex-col">
+                        <CircularText
+  text="SOFTWARE*ENGINEER*"
+  onHover="pause"
+  spinDuration={20}
+  className="custom-class md:block hidden"
+/>
+                        <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
@@ -116,9 +143,10 @@ export function Hero() {
                         >
                             <Image className="md:block hidden" src="/hero.svg" alt="coco" height={1000} width={500} />
                         </motion.div>
-                    </motion.div>.
+                    </motion.div>
+                    </div>
 
-                    
+
                 </div>
             </div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_90%_30%,var(--muted),transparent_35%)] blur-3xl"></div>

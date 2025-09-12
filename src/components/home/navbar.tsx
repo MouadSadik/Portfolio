@@ -1,11 +1,9 @@
 "use client";
 
-//import GitHubIcon from "@/assets/github.svg";
-//import Logo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { useGithubStars } from "@/hooks/use-github";
 import { cn } from "@/lib/utils";
-import {  Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ModeToggle } from "../mode-toogle";
@@ -62,6 +60,8 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
         isScrolled ? "bg-background/90 border-border/20 border-b shadow-xs" : "bg-transparent"
       )}
     >
+
+
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/">
           <div className="flex items-center gap-2 font-bold">
@@ -121,7 +121,7 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
-                <ModeToggle />
+            <ModeToggle />
           </motion.div>
         </div>
         <div className="flex items-center gap-2 md:hidden">
@@ -165,7 +165,19 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
               className="border-border/30 mt-2 border-t pt-2"
             >
               <div className="flex justify-center">
+                <Button variant="ghost" asChild>
+                  <a
+                    href="https://github.com/mouadSadik"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold"
+                  >
+                    <Github />
+                    {stargazersCount}
+                  </a>
+                </Button>
                 <ModeToggle />
+
               </div>
             </motion.div>
           </div>
