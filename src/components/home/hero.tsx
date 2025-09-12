@@ -47,16 +47,16 @@ export function Hero() {
                                 </Badge>
                             </div>
                             <div className="flex justify-between gap-4">
-                                <Link href="/">
+                                <Link href="https://www.linkedin.com/in/mouad-sadik-5b8907257/">
                                     <Linkedin className="w-10 h-7 border rounded-full p-1" />
                                 </Link>
-                                <Link href="/">
+                                <Link href="https://x.com/mouad15s">
                                     <Twitter className="w-10 h-7 border rounded-full p-1" />
                                 </Link>
-                                <Link href="/">
+                                <Link href="https://github.com/MouadSadik">
                                     <Github className="w-10 h-7 border rounded-full p-1" />
                                 </Link>
-                                <Link href="/">
+                                <Link href="https://www.instagram.com/mouad_sadik_?igsh=NXoyNzhjamozZTFt">
                                     <Instagram className="w-10 h-7 border rounded-full p-1" />
                                 </Link>
                             </div>
