@@ -13,14 +13,14 @@ export function Hero() {
     return (
         <section className="relative isolate container mx-auto w-full py-10 ">
             {/* Animated squares background */}
-      <Squares
-        direction="diagonal"
-        speed={0.5}
-        squareSize={40}
-        borderColor="rgba(0, 0, 0, 0.1)"
-        hoverFillColor="rgba(59, 130, 246, 0.1)"
-        className="absolute inset-0 dark:hidden"
-      />
+            <Squares
+                direction="diagonal"
+                speed={0.5}
+                squareSize={40}
+                borderColor="rgba(0, 0, 0, 0.1)"
+                hoverFillColor="rgba(59, 130, 246, 0.1)"
+                className="absolute inset-0 dark:hidden"
+            />
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -125,25 +125,25 @@ export function Hero() {
                     {/* Right Column - Image svg */}
                     <div className="flex flex-col">
                         <CircularText
-  text="SOFTWARE*ENGINEER*"
-  onHover="pause"
-  spinDuration={20}
-  className="custom-class md:block hidden"
-/>
+                            text="SOFTWARE*ENGINEER*"
+                            onHover="pause"
+                            spinDuration={20}
+                            className="custom-class md:block hidden"
+                        />
                         <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        whileHover={{ scale: 1.05, rotate: 2 }}
-                        className="md:flex justify-center hidden"
-                    >
-                        <motion.div
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            whileHover={{ scale: 1.05, rotate: 2 }}
+                            className="md:flex justify-center hidden"
                         >
-                            <Image className="md:block hidden" src="/hero.svg" alt="coco" height={1000} width={500} />
+                            <motion.div
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <Image className="md:block hidden" src="/hero.svg" alt="coco" height={1000} width={500} />
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
                     </div>
 
 

@@ -22,16 +22,16 @@ const navbarItems = [
     href: "#about",
   },
   {
-    label: "Projects",
-    href: "#projects",
-  },
-  {
     label: "Education",
     href: "#education",
   },
   {
     label: "Skills",
     href: "#skills",
+  },
+  {
+    label: "Projects",
+    href: "#projects",
   },
   {
     label: "Contact",
@@ -66,7 +66,7 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
         <Link href="/">
           <div className="flex items-center gap-2 font-bold">
             {/*<Logo className="size-6" />*/}
-            <span className="">SADIK./</span>
+            <span className="">Mouad_SADIK.</span>
           </div>
         </Link>
         <nav className="hidden items-center gap-4 md:flex lg:gap-8">
@@ -124,14 +124,42 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
             <ModeToggle />
           </motion.div>
         </div>
+
+
+
+
+
         <div className="flex items-center gap-2 md:hidden">
-          {/*<ThemeToggle variant="ghost" size="icon" />*/}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+            className="flex-1 border-border/30  border-t "
+          >
+            <div className="flex justify-center items-center gap-2">
+              <Button variant="ghost" asChild>
+                <a
+                  href="https://github.com/mouadSadik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold flex items-center gap-1"
+                >
+                  <Github />
+                  {stargazersCount}
+                </a>
+              </Button>
+
+              <ModeToggle />
+            </div>
+          </motion.div>
           <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
       </div>
+
+
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <motion.div
@@ -158,28 +186,7 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
                 <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
               </motion.a>
             ))}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              className="border-border/30 mt-2 border-t pt-2"
-            >
-              <div className="flex justify-center">
-                <Button variant="ghost" asChild>
-                  <a
-                    href="https://github.com/mouadSadik"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold"
-                  >
-                    <Github />
-                    {stargazersCount}
-                  </a>
-                </Button>
-                <ModeToggle />
 
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       )}

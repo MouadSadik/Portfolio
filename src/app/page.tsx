@@ -2,6 +2,7 @@
 
 import About from "@/components/home/about";
 import Education from "@/components/home/education";
+import Footer from "@/components/home/footer";
 import { Hero } from "@/components/home/hero";
 import { Header } from "@/components/home/navbar";
 import { Projects } from "@/components/home/projects";
@@ -25,6 +26,7 @@ export default function Home() {
           <Education />
           <Skills />
           <Projects />
+          <Footer />
         </main>
     </div>
   );

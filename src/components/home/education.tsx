@@ -111,27 +111,27 @@ const data = [
 const Education = () => {
     return (
         <div id='education' className="mt-20 container">
-            
+
 
             <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 flex flex-col items-center justify-center space-y-4 text-center"
-        >
-          <Badge
-            className="rounded-full px-4 py-1.5 text-sm font-medium shadow-sm"
-            variant="secondary"
-          >
-            <span className="text-primary mr-1">✦</span>Learning
-          </Badge>
-          <h2 className="from-foreground to-foreground/80 max-w-[600px] bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
-            Education
-          </h2>
-          <p className="text-muted-foreground max-w-[500px] md:text-lg">
-A collection of academic and self-taught achievements built through curiosity and continuous learning.          </p>
-        </motion.div>
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="mb-12 flex flex-col items-center justify-center space-y-4 text-center"
+            >
+                <Badge
+                    className="rounded-full px-4 py-1.5 text-sm font-medium shadow-sm"
+                    variant="secondary"
+                >
+                    <span className="text-primary mr-1">✦</span>Learning
+                </Badge>
+                <h2 className="from-foreground to-foreground/80 max-w-[600px] bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+                    Education
+                </h2>
+                <p className="text-muted-foreground max-w-[500px] md:text-lg">
+                    A collection of academic and self-taught achievements built through curiosity and continuous learning.          </p>
+            </motion.div>
 
             <div className="relative w-full overflow-clip">
                 <Timeline data={data} />

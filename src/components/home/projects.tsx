@@ -7,7 +7,7 @@ import { Badge } from "../ui/badge";
 
 export function Projects() {
   return (
-    <div>
+    <div id="projects">
       {/*Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

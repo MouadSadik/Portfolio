@@ -154,7 +154,7 @@ const MarqueeRow = ({
 export function Skills() {
     return (
         <section id="skills" className="relative isolate w-full py-20 md:py-32">
-            
+
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(from_var(--primary)_r_g_b_/_0.03),transparent_70%)]" />
 
             <div className="container mx-auto px-4 md:px-6">
