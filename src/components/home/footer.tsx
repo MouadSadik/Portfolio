@@ -56,10 +56,16 @@ const Footer = () => {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t py-4 px-2 text-center text-sm text-muted-foreground flex justify-between">
-                <div>© {new Date().getFullYear()} Mouad Sadik. All rights reserved.</div>
-                <div> Made with ❤️ using <span className="text-primary">Next.js</span> - <span className="text-primary">Tailwind css </span> - <span className="text-primary">Shadcn ui</span></div>
-            </div>
+            <div className="border-t py-4 px-5 md:px-8 text-sm text-muted-foreground flex flex-col md:flex-row justify-between items-center gap-2">
+  <div>© {new Date().getFullYear()} Mouad Sadik. All rights reserved.</div>
+  <div className="text-center md:text-right">
+    Made with ❤️ using{" "}
+    <span className="text-primary">Next.js</span> -{" "}
+    <span className="text-primary">Tailwind CSS</span> -{" "}
+    <span className="text-primary">Shadcn UI</span>
+  </div>
+</div>
+
         </footer>
     );
 };
