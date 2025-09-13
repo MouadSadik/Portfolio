@@ -127,14 +127,12 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
 
 
 
-
-
         <div className="flex items-center gap-2 md:hidden">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
-            className="flex-1 border-border/30  border-t "
+            className="flex-1 border-border/30  "
           >
             <div className="flex justify-center items-center gap-2">
               <Button variant="ghost" asChild>
