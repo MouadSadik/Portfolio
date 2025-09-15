@@ -5,7 +5,7 @@ import { Badge } from '../ui/badge'
 
 const About = () => {
     return (
-        <section id='about' className="py-20">
+        <section id='about' className="py-20 container">
             <div className="container px-4">
                 <div className="flex flex-col justify-center items-center">
                     <div className="mb-8">

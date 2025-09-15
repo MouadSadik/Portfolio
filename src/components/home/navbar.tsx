@@ -37,6 +37,10 @@ const navbarItems = [
     label: "Contact",
     href: "#contact",
   },
+  {
+    label: "Blog",
+    href: "/blog",
+  },
 ];
 
 export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: HeaderProps) {

@@ -6,6 +6,7 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import Image from "next/image";
 import CodeBlock from "@/components/codeBlock";
+import { Button } from "@/components/ui/button";
 
 export type Category = {
   title: string
@@ -56,8 +57,10 @@ export default async function PostPage({
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-6">
-      <Link href="/" className="hover:underline">
-        ← Back to posts
+      <Link href="/blog" className="hover:underline">
+        <Button className="border rounded-full p-2" variant="ghost">
+          ← Back to posts
+        </Button>
       </Link>
 
       {/* Main Image */}
