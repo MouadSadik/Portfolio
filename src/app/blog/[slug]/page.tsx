@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CodeBlock from "@/components/codeBlock";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export type Category = {
   title: string
@@ -30,7 +31,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
 
 const { projectId, dataset } = client.config();
 
-// ✅ Safe helper that always returns string | null
+//  Safe helper that always returns string | null
 function urlFor(source: SanityImageSource | null | undefined): string | null {
   if (!source || !projectId || !dataset) return null;
   try {
@@ -56,12 +57,13 @@ export default async function PostPage({
   const postImageUrl = post.mainImage ? urlFor(post.mainImage) : null;
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-6">
-      <Link href="/blog" className="hover:underline">
-        <Button className="border rounded-full p-2" variant="ghost">
+    <main className="container mx-auto min-h-screen max-w-4xl p-8 flex flex-col gap-6">
+
+      <Button className="border w-44 rounded-full p-2" variant="ghost">
+        <Link href="/blog" className="hover:underline">
           ← Back to posts
-        </Button>
-      </Link>
+        </Link>
+      </Button>
 
       {/* Main Image */}
       {postImageUrl && (
@@ -79,31 +81,34 @@ export default async function PostPage({
 
       {/* Metadata */}
       <div className="text-sm text-gray-500 flex flex-col gap-1">
-        <span>Published: {new Date(post.publishedAt).toLocaleDateString()}</span>
+        <div className="flex justify-between items-center mb-5">
+
+          {post.author && (
+            <span className="flex items-center gap-2">
+              {post.author.image && urlFor(post.author.image) && (
+                <Image
+                  src={urlFor(post.author.image)!}
+                  alt={post.author.name}
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              )}
+              By {post.author.name}
+            </span>
+          )}
+          <span> {new Date(post.publishedAt).toLocaleDateString()}</span>
+        </div>
         {post.categories?.length > 0 && (
           <span>
-            Categories:{" "}
             {post.categories.map((cat: Category) => (
               <span key={cat.title} className="mr-2">
-                #{cat.title}
+                <Badge variant="destructive">{cat.title}</Badge>
               </span>
             ))}
           </span>
         )}
-        {post.author && (
-          <span className="flex items-center gap-2">
-            {post.author.image && urlFor(post.author.image) && (
-              <Image
-                src={urlFor(post.author.image)!}
-                alt={post.author.name}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            )}
-            By {post.author.name}
-          </span>
-        )}
+
       </div>
 
       {/* Body */}
@@ -115,13 +120,15 @@ export default async function PostPage({
               types: {
                 image: ({ value }) =>
                   value?.asset && urlFor(value) ? (
-                    <Image
-                      src={urlFor(value)!}
-                      alt={value.alt || "Blog image"}
-                      width={300}
-                      height={300}
-                      className="rounded-lg my-4"
-                    />
+                    <div className="flex justify-center my-7">
+                      <Image
+                        src={urlFor(value)!}
+                        alt={value.alt || "Blog image"}
+                        width={300}
+                        height={300}
+                        className="rounded-lg"
+                      />
+                    </div>
                   ) : null,
 
                 code: ({ value }) =>

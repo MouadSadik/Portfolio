@@ -23,15 +23,15 @@ export default async function IndexPage() {
       </div>
 
       <div className="container mx-auto px-8 py-16 relative z-10">
-       {/* Hero Section */}
-<div className="text-center space-y-4">
-  <h1 className="text-5xl font-bold text-primary">
-    Latest Articles
-  </h1>
-  <p className="mx-auto text-pretty max-w-3xl mb-8">
-    Explore my journey through web development, Software Engineering, studies, and career growth. Find tutorials, insights, and reflections on technology, and professional development.
-  </p>
-</div>
+        {/* Hero Section */}
+        <div className="text-center space-y-4">
+          <h1 className="text-5xl font-bold text-primary">
+            Latest Articles
+          </h1>
+          <p className="mx-auto text-pretty max-w-3xl mb-8">
+            Explore my journey through web development, Software Engineering, studies, and career growth. Find tutorials, insights, and reflections on technology, and professional development.
+          </p>
+        </div>
 
         {/* Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
