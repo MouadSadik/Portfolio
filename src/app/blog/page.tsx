@@ -17,7 +17,7 @@ export default async function IndexPage() {
   return (
     <main className="min-h-screen  relative overflow-hidden">
       {/* Animated background elements */}
-     
+
 
       <div className="container mx-auto px-8 py-16 relative z-10">
         {/* Hero Section */}
@@ -71,14 +71,14 @@ export default async function IndexPage() {
                     </h2>
 
                     {post.categories?.length > 0 && (
-                              <span>
-                                {post.categories.map((cat: Category) => (
-                                  <span key={cat.title} className="mr-2">
-                                    <CategoryBadge key={cat.title} title={cat.title} />
-                                  </span>
-                                ))}
-                              </span>
-                            )}
+                      <span>
+                        {post.categories.map((cat: Category) => (
+                          <span key={cat.title} className="mr-2">
+                            <CategoryBadge key={cat.title} title={cat.title} />
+                          </span>
+                        ))}
+                      </span>
+                    )}
 
                     {/* Read more indicator */}
                     <div className="flex items-center text-muted-foreground group-hover:text-primary transition-colors duration-300 text-sm font-medium">
@@ -115,8 +115,6 @@ export default async function IndexPage() {
           </div>
         )}
       </div>
-
-      
     </main>
   );
 }

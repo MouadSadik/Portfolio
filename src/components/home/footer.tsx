@@ -41,16 +41,16 @@ const Footer = () => {
                 {/* Social Links */}
                 <div className="flex md:justify-end gap-4">
                     <Link href="https://www.linkedin.com/in/mouad-sadik-5b8907257/" target="_blank">
-                        <Linkedin className="w-12 h-10 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
+                        <Linkedin className="w-10 h-9 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
                     </Link>
                     <Link href="https://x.com/mouad15s" target="_blank">
-                        <Twitter className="w-12 h-10 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
+                        <Twitter className="w-10 h-9 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
                     </Link>
                     <Link href="https://github.com/MouadSadik" target="_blank">
-                        <Github className="w-12 h-10 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
+                        <Github className="w-10 h-9 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
                     </Link>
                     <Link href="https://www.instagram.com/mouad_sadik_?igsh=NXoyNzhjamozZTFt" target="_blank">
-                        <Instagram className="w-12 h-10 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
+                        <Instagram className="w-10 h-9 p-2 border rounded-full hover:bg-primary hover:text-primary-foreground transition" />
                     </Link>
                 </div>
             </div>

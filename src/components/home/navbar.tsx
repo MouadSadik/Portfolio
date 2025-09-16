@@ -163,35 +163,53 @@ export function Header({ isScrolled, mobileMenuOpen, setMobileMenuOpen }: Header
 
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="bg-background/95 absolute inset-x-0 top-16 border-b backdrop-blur-lg md:hidden"
-        >
-          <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
-            {navbarItems.map((item, i) => (
-              <motion.a
-                key={item.label}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.2, delay: i * 0.05 }}
+{mobileMenuOpen && (
+  <motion.div
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    className="bg-background/95 absolute inset-x-0 top-16 border-b backdrop-blur-lg md:hidden"
+  >
+    <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
+      {navbarItems.map((item, i) => {
+        const isSection = item.href.startsWith("#");
+
+        return (
+          <motion.div
+            key={item.label}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2, delay: i * 0.05 }}
+          >
+            {isSection ? (
+              <a
                 href={item.href}
                 onClick={(e) => {
                   handleScrollToSection(e);
                   setMobileMenuOpen(false);
                 }}
-                className="group relative overflow-hidden py-2 text-sm font-medium"
+                className="group relative overflow-hidden py-2 text-sm font-medium block"
               >
                 <span className="relative z-10">{item.label}</span>
                 <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
-              </motion.a>
-            ))}
+              </a>
+            ) : (
+              <Link
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="group relative overflow-hidden py-2 text-sm font-medium block"
+              >
+                <span className="relative z-10">{item.label}</span>
+                <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            )}
+          </motion.div>
+        );
+      })}
+    </div>
+  </motion.div>
+)}
 
-          </div>
-        </motion.div>
-      )}
     </header>
   );
 }

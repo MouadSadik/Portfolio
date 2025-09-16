@@ -149,10 +149,10 @@ export default async function PostPage({
               },
 
               block: {
-      h3: ({ children }) => (
+      h2: ({ children }) => (
         <div className="mt-10 mb-4">
           <hr className="border-t border-gray-300 mb-4" />
-          <h3 className="text-2xl font-semibold">{children}</h3>
+          <h2 className="text-2xl font-semibold">{children}</h2>
         </div>
       ),
     },
