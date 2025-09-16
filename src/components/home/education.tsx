@@ -110,7 +110,7 @@ const data = [
 
 const Education = () => {
     return (
-        <div id='education' className="mt-20 container">
+        <div id='education' className="mt-20 container w-full mx-auto">
 
 
             <motion.div

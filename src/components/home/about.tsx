@@ -5,8 +5,8 @@ import { Badge } from '../ui/badge'
 
 const About = () => {
     return (
-        <section id='about' className="py-20 container">
-            <div className="container px-4">
+        <section id='about' className="py-20 container w-full mx-auto">
+            <div className=" px-4">
                 <div className="flex flex-col justify-center items-center">
                     <div className="mb-8">
                         <Badge

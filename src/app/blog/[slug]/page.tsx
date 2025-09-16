@@ -1,4 +1,3 @@
-
 import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -59,11 +58,9 @@ export default async function PostPage({
   return (
     <main className="container mx-auto min-h-screen max-w-4xl p-8 flex flex-col gap-6">
 
-      <Button className="border w-44 rounded-full p-2" variant="ghost">
-        <Link href="/blog" className="hover:underline">
-          ← Back to posts
-        </Link>
-      </Button>
+      <Link href="/blog" className="hover:underline border w-44 text-center rounded-full p-2">
+        ← Back to posts
+      </Link>
 
       {/* Main Image */}
       {postImageUrl && (
@@ -103,7 +100,8 @@ export default async function PostPage({
           <span>
             {post.categories.map((cat: Category) => (
               <span key={cat.title} className="mr-2">
-                <Badge variant="destructive">{cat.title}</Badge>
+                {/*<Badge variant="destructive">{cat.title}</Badge>*/}
+                {cat.title}
               </span>
             ))}
           </span>
@@ -135,6 +133,8 @@ export default async function PostPage({
                   value?.code ? (
                     <CodeBlock code={value.code} language={value.language || "javascript"} />
                   ) : null,
+
+                
               },
               marks: {
                 link: ({ value, children }) => (
@@ -148,6 +148,15 @@ export default async function PostPage({
                   </a>
                 ),
               },
+
+              block: {
+      h3: ({ children }) => (
+        <div className="mt-10 mb-4">
+          <hr className="border-t border-gray-300 mb-4" />
+          <h3 className="text-2xl font-semibold">{children}</h3>
+        </div>
+      ),
+    },
             }}
           />
         )}
