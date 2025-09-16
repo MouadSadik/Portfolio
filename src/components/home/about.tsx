@@ -1,5 +1,7 @@
+"use client"
+
 import React from 'react'
-import { Search, Sparkles, Cpu, Code, Server, Star } from 'lucide-react'
+import { Search, Sparkles, Cpu, Code, Server } from 'lucide-react'
 import { GlowingEffect } from '../ui/glowing-effect'
 import { Badge } from '../ui/badge'
 

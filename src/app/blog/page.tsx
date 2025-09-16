@@ -1,7 +1,8 @@
-"use client"
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
+import { CategoryBadge } from "@/components/blog/categoryBadge";
+import { Category } from "./[slug]/page";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -14,13 +15,9 @@ export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/10 relative overflow-hidden">
+    <main className="min-h-screen  relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+     
 
       <div className="container mx-auto px-8 py-16 relative z-10">
         {/* Hero Section */}
@@ -73,6 +70,16 @@ export default async function IndexPage() {
                       {post.title}
                     </h2>
 
+                    {post.categories?.length > 0 && (
+                              <span>
+                                {post.categories.map((cat: Category) => (
+                                  <span key={cat.title} className="mr-2">
+                                    <CategoryBadge key={cat.title} title={cat.title} />
+                                  </span>
+                                ))}
+                              </span>
+                            )}
+
                     {/* Read more indicator */}
                     <div className="flex items-center text-muted-foreground group-hover:text-primary transition-colors duration-300 text-sm font-medium">
                       <span>Read article</span>
@@ -109,31 +116,7 @@ export default async function IndexPage() {
         )}
       </div>
 
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-      `}</style>
+      
     </main>
   );
 }

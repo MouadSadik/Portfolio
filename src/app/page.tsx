@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <div>
       
-      <Header  isScrolled={isScrolled}
+      {/*<Header  isScrolled={isScrolled}
         mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}/>
+        setMobileMenuOpen={setMobileMenuOpen}/>*/}
 
         <main className="w-full flex-1">
           <Hero />

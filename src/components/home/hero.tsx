@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Download, Github, Instagram, Linkedin, Twitter, X } from "lucide-react";
@@ -93,16 +95,16 @@ export function Hero() {
                                     <Download className="ml-2 size-4" />
                                 </Button>
                             </Link>
-                            <a href="#contact">
+                            <Link href="/blog">
                                 <Button
                                     size="lg"
                                     className="h-12 w-full cursor-pointer rounded-full px-8 text-base shadow-md transition-transform duration-300 hover:translate-y-[-2px] hover:shadow-lg"
                                 >
-                                    View More
+                                    View My Blog
                                     <ArrowRight className="ml-2 size-4" />
                                 </Button>
 
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="mt-8 flex flex-wrap items-center gap-6">

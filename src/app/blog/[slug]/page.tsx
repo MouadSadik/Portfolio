@@ -4,9 +4,9 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import Image from "next/image";
-import CodeBlock from "@/components/codeBlock";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import CodeBlock from "@/components/blog/codeBlock";
+import { CategoryBadge } from "@/components/blog/categoryBadge";
+
 
 export type Category = {
   title: string
@@ -100,8 +100,7 @@ export default async function PostPage({
           <span>
             {post.categories.map((cat: Category) => (
               <span key={cat.title} className="mr-2">
-                {/*<Badge variant="destructive">{cat.title}</Badge>*/}
-                {cat.title}
+                <CategoryBadge key={cat.title} title={cat.title} />
               </span>
             ))}
           </span>
