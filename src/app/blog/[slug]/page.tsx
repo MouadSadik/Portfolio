@@ -133,7 +133,6 @@ export default async function PostPage({
                     <CodeBlock code={value.code} language={value.language || "javascript"} />
                   ) : null,
 
-                
               },
               marks: {
                 link: ({ value, children }) => (
@@ -149,13 +148,23 @@ export default async function PostPage({
               },
 
               block: {
-      h2: ({ children }) => (
-        <div className="mt-10 mb-4">
-          <hr className="border-t border-gray-300 mb-4" />
-          <h2 className="text-2xl font-semibold">{children}</h2>
-        </div>
-      ),
-    },
+                h2: ({ children }) => (
+                  <div className="mt-10 mb-4">
+                    <hr className="border-t border-gray-300 mb-4" />
+                    <h2 className="text-2xl font-semibold">{children}</h2>
+                  </div>
+                ),
+              },
+
+              list: {
+                bullet: ({ children }) => (
+                  <ul className="list-disc list-inside space-y-2 pl-5">{children}</ul>
+                ),
+
+                number: ({ children }) => (
+                  <ol className="list-decimal list-inside space-y-2 pl-5">{children}</ol>
+                ),
+              },
             }}
           />
         )}
