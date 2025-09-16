@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Download, Github, Instagram, Linkedin, Twitter, X } from "lucide-react";
+import { ArrowRight, Check, Download, Github, Instagram, Linkedin, Twitter} from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Spotlight } from "../effects/spotlight";
