@@ -3,6 +3,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { CategoryBadge } from "@/components/blog/categoryBadge";
 import { Category } from "./[slug]/page";
+import Navbar from "@/components/home/nav";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -16,8 +17,7 @@ export default async function IndexPage() {
 
   return (
     <main className="min-h-screen  relative overflow-hidden">
-      {/* Animated background elements */}
-
+      <Navbar />
 
       <div className="container mx-auto px-8 py-16 relative z-10">
         {/* Hero Section */}

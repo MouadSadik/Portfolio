@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from '@vercel/analytics/next';
-import Navbar from "@/components/home/nav";
 import Footer from "@/components/home/footer";
 
 
@@ -70,7 +69,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
           {children}
           <Footer />
           <Analytics />
